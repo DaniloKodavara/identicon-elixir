@@ -9,7 +9,11 @@ defmodule Identicon do
   end
 
   def filter_odd_squares %Identicon.Image{grid: grid} = image do
-    
+    grid = Enum.filter grid, fn({code, _index}) ->
+      rem(code, 2) == 0
+    end
+
+    %Identicon.Image{image | grid: grid}
   end
   
   def build_grid %Identicon.Image{hex: hex} = image do
